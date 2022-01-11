@@ -4,9 +4,11 @@ session_start();
 
 
 require_once("controller/UserController.php");
+require_once("controller/BooksRESTController.php");
 require_once("controller/IzdelekController.php");
 
 define("BASE_URL", $_SERVER["SCRIPT_NAME"] . "/");
+//define("BASE_URL", rtrim($_SERVER["SCRIPT_NAME"], "index.php"));
 define("CSS_URL", rtrim($_SERVER["SCRIPT_NAME"], "index.php") . "static/css/");
 
 $path = isset($_SERVER["PATH_INFO"]) ? trim($_SERVER["PATH_INFO"], "/") : "";
@@ -95,13 +97,34 @@ $urls = [
     "oddaj" => function () {
         IzdelekController::oddaj();
     },
+    "/api\/books\/(\d+)$/" => function ($id) {
+        //var_dump($_SERVER);
+                
+                BooksRESTController::get($id);
+
+    },
+    "api/books" => function () {
+
+            
+                BooksRESTController::index();
+              
+        
+    },
     "" => function () {
         ViewHelper::redirect(BASE_URL . "izdelek");
     },
+
 ];
 
 try {
-    if (isset($urls[$path])) {
+        
+    if (preg_match("/^api\/books\/(\d+)$/", $path, $params)) {
+            $test = substr($path, -1);
+            BooksRESTController::get($test);
+        }
+        
+    else if (isset($urls[$path])) {
+
        $urls[$path]();
     } else {
         echo "No controller for '$path'";
@@ -110,6 +133,7 @@ try {
     echo "An error occurred: <pre>$e</pre>";
     // ViewHelper::error404();
 } 
+
 
 
 ?>
