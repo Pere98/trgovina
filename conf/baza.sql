@@ -35,10 +35,10 @@ INSERT INTO `users` (id, username, password, ime, priimek, email, status) VALUES
 
 CREATE TABLE `izdelki` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ime` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
-  `opis` varchar(145) COLLATE utf8_slovenian_ci NOT NULL,
-  `lastnik` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
-  `cena` varchar(45) ,
+  `title` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
+  `description` varchar(145) COLLATE utf8_slovenian_ci NOT NULL,
+  `author` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
+  `price` varchar(45) ,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
