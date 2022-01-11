@@ -18,7 +18,7 @@
      <form action="<?= BASE_URL . "cart" ?>" method="post">
             <input type="hidden" name="do" value="add_into_cart" />
             <input type="hidden" name="id" value="<?= $izd["id"] ?>" />
-        <li><b><?= $izd["ime"] ?></b>: <?= $izd["opis"] ?>, <?= $izd["cena"] ?>
+        <li><b><?= $izd["title"] ?></b>: <?= $izd["description"] ?>, <?= $izd["price"] ?>
 
         <?php if ($loggedIn): ?>
         	<a href="<?= BASE_URL . "izdelek/edit?id=" . $izd["id"] ?>">edit</a>
